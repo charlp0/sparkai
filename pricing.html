@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spark AI — Pricing</title>
+    <meta name="description" content="Spark AI pricing. Build, publish, and monetize native iOS apps with AI. Starting at $99/mo. Try free — 5 uses/week.">
+    <meta property="og:title" content="Spark AI — Pricing">
+    <meta property="og:description" content="One plan. Full-stack. Starting at $99/mo. Build, publish, monetize native iOS apps with AI.">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>⚡</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg: #050505;
+            --bg-card: #0a0a0a;
+            --bg-elevated: #111111;
+            --border: #1a1a1a;
+            --border-hover: #2a2a2a;
+            --orange: #FF6B35;
+            --orange-soft: #FF8F5E;
+            --orange-glow: rgba(255, 107, 53, 0.12);
+            --green: #22C55E;
+            --text: #ffffff;
+            --text-dim: #999999;
+            --text-muted: #555555;
+            --text-faint: #333333;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+        }
+
+        /* ===== NAV ===== */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 0 40px;
+            height: 64px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(24px) saturate(180%);
+            -webkit-backdrop-filter: blur(24px) saturate(180%);
+            background: rgba(5, 5, 5, 0.85);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 700;
+            font-size: 17px;
+            letter-spacing: -0.02em;
+            text-decoration: none;
+            color: var(--text);
+        }
+
+        .nav-left .logo-icon {
+            width: 28px;
+            height: 28px;
+            background: var(--orange);
+            border-radius: 7px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        .nav-center {
+            display: flex;
+            gap: 32px;
+        }
+
+        .nav-center a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            transition: color 0.2s;
+            letter-spacing: 0.01em;
+        }
+
+        .nav-center a:hover { color: var(--text); }
+        .nav-center a.active { color: var(--orange); }
+
+        .nav-right .nav-cta {
+            background: var(--text);
+            color: var(--bg);
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+
+        .nav-right .nav-cta:hover { opacity: 0.85; }
+
+        /* ===== HERO ===== */
+        .pricing-hero {
+            padding: 140px 24px 60px;
+            text-align: center;
+        }
+
+        .pricing-hero h1 {
+            font-size: clamp(36px, 5vw, 56px);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            margin-bottom: 16px;
+        }
+
+        .pricing-hero .dim { color: var(--text-dim); }
+
+        .pricing-hero p {
+            font-size: 18px;
+            color: var(--text-dim);
+            max-width: 500px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* ===== PRICING CARD ===== */
+        .pricing-section {
+            max-width: 520px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+        }
+
+        .pricing-card {
+            background: linear-gradient(145deg, #FF6B35, #FF8F5E, #FFa070);
+            border-radius: 24px;
+            padding: 40px 36px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at top right, rgba(255,255,255,0.15) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .card-title {
+            font-size: 32px;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+
+        .card-subtitle {
+            font-size: 14px;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 28px;
+        }
+
+        .price-display {
+            margin-bottom: 28px;
+        }
+
+        .price-amount {
+            font-size: 56px;
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: -0.03em;
+        }
+
+        .price-period {
+            font-size: 20px;
+            font-weight: 400;
+            color: rgba(255,255,255,0.7);
+        }
+
+        /* ===== SLIDER ===== */
+        .credits-label {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 12px;
+        }
+
+        .credits-selector {
+            display: flex;
+            background: rgba(255,255,255,0.2);
+            border-radius: 12px;
+            padding: 4px;
+            margin-bottom: 32px;
+            position: relative;
+        }
+
+        .credit-option {
+            flex: 1;
+            padding: 10px 0;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 600;
+            color: rgba(255,255,255,0.6);
+            cursor: pointer;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .credit-option.active {
+            background: rgba(255,255,255,0.95);
+            color: #FF6B35;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+
+        .credit-option:hover:not(.active) {
+            color: rgba(255,255,255,0.9);
+        }
+
+        /* ===== FEATURES ===== */
+        .features-list {
+            list-style: none;
+            margin-bottom: 32px;
+        }
+
+        .features-list li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 0;
+            font-size: 15px;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .features-list .check {
+            color: #fff;
+            font-size: 16px;
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn-upgrade {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            background: #fff;
+            color: #1a1a1a;
+            border: none;
+            border-radius: 14px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+            text-decoration: none;
+            margin-bottom: 12px;
+        }
+
+        .btn-upgrade:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+        }
+
+        .btn-try {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            background: transparent;
+            color: rgba(255,255,255,0.7);
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 14px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .btn-try:hover {
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+        }
+
+        /* ===== COMPARISON SECTION ===== */
+        .comparison-section {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+        }
+
+        .comparison-title {
+            text-align: center;
+            font-size: clamp(24px, 3vw, 36px);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 8px;
+        }
+
+        .comparison-sub {
+            text-align: center;
+            font-size: 15px;
+            color: var(--text-dim);
+            margin-bottom: 48px;
+        }
+
+        .comp-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .comp-table thead th {
+            padding: 16px 20px;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-dim);
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .comp-table thead th:nth-child(2) {
+            color: var(--orange);
+        }
+
+        .comp-table tbody td {
+            padding: 14px 20px;
+            font-size: 14px;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-dim);
+        }
+
+        .comp-table tbody td:first-child {
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        .comp-table tbody td:nth-child(2) {
+            color: var(--green);
+            font-weight: 600;
+        }
+
+        .comp-table .emoji-cell {
+            font-size: 16px;
+        }
+
+        /* ===== EVERYTHING INCLUDED ===== */
+        .included-section {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+        }
+
+        .included-title {
+            text-align: center;
+            font-size: clamp(24px, 3vw, 32px);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 48px;
+        }
+
+        .included-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .included-item {
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+        }
+
+        .included-icon {
+            font-size: 20px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .included-item h4 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .included-item p {
+            font-size: 13px;
+            color: var(--text-dim);
+            line-height: 1.5;
+        }
+
+        /* ===== FAQ ===== */
+        .faq-section {
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+        }
+
+        .faq-title {
+            text-align: center;
+            font-size: clamp(24px, 3vw, 32px);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 40px;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--border);
+            padding: 20px 0;
+        }
+
+        .faq-q {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            cursor: pointer;
+        }
+
+        .faq-a {
+            font-size: 14px;
+            color: var(--text-dim);
+            line-height: 1.6;
+        }
+
+        /* ===== CTA BOTTOM ===== */
+        .cta-section {
+            text-align: center;
+            padding: 60px 24px 80px;
+            border-top: 1px solid var(--border);
+        }
+
+        .cta-section h2 {
+            font-size: clamp(24px, 3vw, 36px);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+        }
+
+        .cta-section p {
+            color: var(--text-dim);
+            font-size: 16px;
+            margin-bottom: 32px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn-primary {
+            background: var(--orange);
+            color: #000;
+            padding: 14px 32px;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .cta-btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+
+        .cta-btn-secondary {
+            background: transparent;
+            color: var(--text);
+            padding: 14px 32px;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            border: 1px solid var(--border);
+            transition: all 0.2s;
+        }
+
+        .cta-btn-secondary:hover { border-color: var(--border-hover); }
+
+        /* ===== FOOTER ===== */
+        footer {
+            text-align: center;
+            padding: 40px 24px;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 16px;
+        }
+
+        .footer-links a {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover { color: var(--text-dim); }
+
+        .footer-copy {
+            font-size: 11px;
+            color: var(--text-faint);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            nav { padding: 0 20px; }
+            .nav-center { display: none; }
+            .pricing-card { padding: 32px 24px; }
+            .price-amount { font-size: 44px; }
+            .included-grid { grid-template-columns: 1fr; }
+            .credit-option { font-size: 12px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<nav>
+    <a class="nav-left" href="index.html">
+        <div class="logo-icon">⚡</div>
+        Spark AI
+    </a>
+    <div class="nav-center">
+        <a href="index.html#platform">Platform</a>
+        <a href="pricing.html" class="active">Pricing</a>
+        <a href="index.html#about">About</a>
+        <a href="affiliate.html">Affiliates</a>
+    </div>
+    <div class="nav-right">
+        <a href="index.html#join" class="nav-cta">Get Early Access</a>
+    </div>
+</nav>
+
+<!-- ===== PRICING HERO ===== -->
+<section class="pricing-hero">
+    <h1>One plan.<br><span class="dim">Everything included.</span></h1>
+    <p>Build, publish, and monetize native iOS apps with AI. Choose your credits. No hidden fees.</p>
+</section>
+
+<!-- ===== PRICING CARD ===== -->
+<section class="pricing-section">
+    <div class="pricing-card">
+        <div class="card-title">Spark AI</div>
+        <div class="card-subtitle">iOS, Watch, iPad, Vision Pro with SwiftUI. Full-stack.</div>
+
+        <div class="price-display">
+            <span class="price-amount" id="price">$99</span><span class="price-period">/mo</span>
+        </div>
+
+        <div class="credits-label">CREDITS</div>
+        <div class="credits-selector">
+            <div class="credit-option active" data-price="$99" data-credits="500" onclick="selectPlan(this)">500</div>
+            <div class="credit-option" data-price="$199" data-credits="1K" onclick="selectPlan(this)">1K</div>
+            <div class="credit-option" data-price="$499" data-credits="2.5K" onclick="selectPlan(this)">2.5K</div>
+            <div class="credit-option" data-price="$899" data-credits="5K" onclick="selectPlan(this)">5K</div>
+            <div class="credit-option" data-price="Custom" data-credits="Custom" onclick="selectPlan(this)">Custom</div>
+        </div>
+
+        <ul class="features-list">
+            <li><span class="check">✓</span> Swift native — Apple HIG compliant</li>
+            <li><span class="check">✓</span> One-click App Store publishing</li>
+            <li><span class="check">✓</span> Built-in monetization &amp; paywalls</li>
+            <li><span class="check">✓</span> Auto ASO optimization</li>
+            <li><span class="check">✓</span> Real-time analytics</li>
+            <li><span class="check">✓</span> Private projects</li>
+            <li><span class="check">✓</span> Priority support</li>
+        </ul>
+
+        <a href="#join" class="btn-upgrade">Get Started</a>
+        <a href="#" class="btn-try">Try Spark AI (5 uses/week)</a>
+    </div>
+</section>
+
+<!-- ===== WHY SPARK AI ===== -->
+<section class="comparison-section">
+    <h2 class="comparison-title">The only full-stack platform.</h2>
+    <p class="comparison-sub">Other tools stop at build. We take you all the way to revenue.</p>
+
+    <table class="comp-table">
+        <thead>
+            <tr>
+                <th>What you need</th>
+                <th>Spark AI</th>
+                <th>Other AI builders</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Swift native apps</td>
+                <td class="emoji-cell">✅</td>
+                <td class="emoji-cell">Some</td>
+            </tr>
+            <tr>
+                <td>One-click App Store publishing</td>
+                <td class="emoji-cell">✅</td>
+                <td class="emoji-cell">❌</td>
+            </tr>
+            <tr>
+                <td>ASO optimization</td>
+                <td class="emoji-cell">✅ AI-powered</td>
+                <td class="emoji-cell">❌</td>
+            </tr>
+            <tr>
+                <td>Paywalls &amp; monetization</td>
+                <td class="emoji-cell">✅ Built-in</td>
+                <td class="emoji-cell">❌</td>
+            </tr>
+            <tr>
+                <td>Analytics &amp; attribution</td>
+                <td class="emoji-cell">✅ Real-time</td>
+                <td class="emoji-cell">❌</td>
+            </tr>
+            <tr>
+                <td>AI localization</td>
+                <td class="emoji-cell">✅ 40+ languages</td>
+                <td class="emoji-cell">❌</td>
+            </tr>
+            <tr>
+                <td>Backed by 14 years &amp; 1B+ downloads</td>
+                <td class="emoji-cell">✅</td>
+                <td class="emoji-cell">❌</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<!-- ===== EVERYTHING INCLUDED ===== -->
+<section class="included-section">
+    <h2 class="included-title">Everything in every plan</h2>
+    <div class="included-grid">
+        <div class="included-item">
+            <div class="included-icon">🔨</div>
+            <div>
+                <h4>Build</h4>
+                <p>Describe your app in plain English. Spark AI generates Swift native code for iOS, Watch, iPad, Vision Pro.</p>
+            </div>
+        </div>
+        <div class="included-item">
+            <div class="included-icon">🚀</div>
+            <div>
+                <h4>Publish</h4>
+                <p>One-click App Store submission. Auto screenshots, ASO optimization, AI localization in 40+ languages.</p>
+            </div>
+        </div>
+        <div class="included-item">
+            <div class="included-icon">💰</div>
+            <div>
+                <h4>Monetize</h4>
+                <p>IAP, subscriptions, ad monetization. Best-in-class paywalls. Attribution &amp; real-time analytics.</p>
+            </div>
+        </div>
+        <div class="included-item">
+            <div class="included-icon">📈</div>
+            <div>
+                <h4>Scale</h4>
+                <p>Build a portfolio. Expand to new markets. Powered by MWM's 14 years and 1B+ downloads expertise.</p>
+            </div>
+        </div>
+        <div class="included-item">
+            <div class="included-icon">🎨</div>
+            <div>
+                <h4>Apple HIG Design</h4>
+                <p>Premium UI that feels like Apple. Native components, smooth animations, App Store approved.</p>
+            </div>
+        </div>
+        <div class="included-item">
+            <div class="included-icon">🔒</div>
+            <div>
+                <h4>Private Projects</h4>
+                <p>Your code stays yours. Full ownership. Export anytime.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="faq-section">
+    <h2 class="faq-title">FAQ</h2>
+
+    <div class="faq-item">
+        <div class="faq-q">What's a credit?</div>
+        <div class="faq-a">One credit = one AI interaction. Whether it's "change the button color" or "build a complete authentication flow" — it's one credit. The complexity doesn't matter.</div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-q">What's included in the free trial?</div>
+        <div class="faq-a">5 uses per week. Enough to test Spark AI and see the quality of generated apps. Free projects are public and cannot be published to the App Store.</div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-q">Can I upgrade or downgrade anytime?</div>
+        <div class="faq-a">Yes. Switch between credit tiers at any time. Changes take effect on your next billing cycle.</div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-q">Do unused credits roll over?</div>
+        <div class="faq-a">Credits are monthly. Unused credits do not roll over to the next month.</div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-q">What about the App Store developer fee?</div>
+        <div class="faq-a">You'll need an Apple Developer Program membership ($99/year) to publish apps. This is required by Apple and is separate from your Spark AI subscription.</div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-q">Do I own the code?</div>
+        <div class="faq-a">Yes. 100% ownership. Export your Swift source code anytime. Continue development in Xcode if you want.</div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-q">How is Spark AI different from other AI app builders?</div>
+        <div class="faq-a">Other AI builders stop at code generation. Spark AI is full-stack: build + publish + monetize. Same price, 4x the value. Plus we're backed by MWM's 14-year track record with 1B+ downloads.</div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-q">Is there an affiliate program?</div>
+        <div class="faq-a">Yes — 30% recurring commission for 12 months on every referral. <a href="affiliate.html" style="color: var(--orange);">Learn more →</a></div>
+    </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="cta-section">
+    <h2>Ready to launch?</h2>
+    <p>Don't just build apps. Launch businesses.</p>
+    <div class="cta-buttons">
+        <a href="#join" class="cta-btn-primary">Get Early Access</a>
+        <a href="index.html" class="cta-btn-secondary">← Back to homepage</a>
+    </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+    <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="affiliate.html">Affiliate Program</a>
+    </div>
+    <div class="footer-copy">© 2026 MWM. All rights reserved.</div>
+</footer>
+
+<script>
+function selectPlan(el) {
+    document.querySelectorAll('.credit-option').forEach(opt => opt.classList.remove('active'));
+    el.classList.add('active');
+
+    const price = el.getAttribute('data-price');
+    document.getElementById('price').textContent = price;
+
+    // Update button text for custom
+    const btn = document.querySelector('.btn-upgrade');
+    if (price === 'Custom') {
+        btn.textContent = 'Contact Sales';
+    } else {
+        btn.textContent = 'Get Started';
+    }
+}
+</script>
+
+</body>
+</html>
