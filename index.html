@@ -1,0 +1,1398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spark AI — Don't just build apps. Launch businesses.</title>
+    <meta name="description" content="The first full-stack AI platform for native iOS apps. Build, publish, grow, scale — powered by 14 years of mobile expertise and 1B+ downloads.">
+    <meta property="og:title" content="Spark AI — Don't just build apps. Launch businesses.">
+    <meta property="og:description" content="Native iOS apps with AI. One-click App Store publishing. Built-in monetization. Powered by 14 years and 1B+ downloads.">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>⚡</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg: #050505;
+            --bg-card: #0a0a0a;
+            --bg-elevated: #111111;
+            --border: #1a1a1a;
+            --border-hover: #2a2a2a;
+            --orange: #FF6B35;
+            --orange-soft: #FF8F5E;
+            --orange-glow: rgba(255, 107, 53, 0.12);
+            --blue: #3B82F6;
+            --green: #22C55E;
+            --purple: #A855F7;
+            --text: #ffffff;
+            --text-dim: #999999;
+            --text-muted: #555555;
+            --text-faint: #333333;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+        }
+
+        /* ===== NAV ===== */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 0 40px;
+            height: 64px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(24px) saturate(180%);
+            -webkit-backdrop-filter: blur(24px) saturate(180%);
+            background: rgba(5, 5, 5, 0.85);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 700;
+            font-size: 17px;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-left .logo-icon {
+            width: 28px;
+            height: 28px;
+            background: var(--orange);
+            border-radius: 7px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        .nav-center {
+            display: flex;
+            gap: 32px;
+        }
+
+        .nav-center a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            transition: color 0.2s;
+            letter-spacing: 0.01em;
+        }
+
+        .nav-center a:hover { color: var(--text); }
+
+        .nav-right .nav-cta {
+            background: var(--text);
+            color: var(--bg);
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+
+        .nav-right .nav-cta:hover { opacity: 0.85; }
+
+        /* ===== HERO ===== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 24px 60px;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, var(--orange-glow) 0%, transparent 65%);
+            pointer-events: none;
+        }
+
+        .hero-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-dim);
+            margin-bottom: 48px;
+            background: rgba(10, 10, 10, 0.8);
+            letter-spacing: 0.02em;
+        }
+
+        .hero-pill .live-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--green);
+            border-radius: 50%;
+            animation: blink 2s ease-in-out infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .hero h1 {
+            font-size: clamp(56px, 9vw, 110px);
+            font-weight: 800;
+            line-height: 0.95;
+            letter-spacing: -0.05em;
+            margin-bottom: 32px;
+        }
+
+        .hero h1 .gradient {
+            background: linear-gradient(135deg, var(--orange) 0%, var(--orange-soft) 50%, #FFB088 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-sub {
+            font-size: clamp(15px, 1.8vw, 19px);
+            color: var(--text-dim);
+            max-width: 520px;
+            line-height: 1.65;
+            margin-bottom: 48px;
+            font-weight: 400;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn-main {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--orange);
+            color: white;
+            padding: 14px 28px;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            letter-spacing: -0.01em;
+        }
+
+        .btn-main:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 40px rgba(255, 107, 53, 0.25);
+        }
+
+        .btn-ghost {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: transparent;
+            color: var(--text-dim);
+            padding: 14px 28px;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 500;
+            text-decoration: none;
+            border: 1px solid var(--border);
+            transition: all 0.2s;
+        }
+
+        .btn-ghost:hover {
+            border-color: var(--border-hover);
+            color: var(--text);
+        }
+
+        /* ===== VIDEO / DEMO ===== */
+        .demo-wrap {
+            padding: 0 24px 140px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .demo-frame {
+            width: 100%;
+            max-width: 1080px;
+            aspect-ratio: 16/9;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .demo-frame::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 60%, rgba(5,5,5,0.4) 100%);
+            pointer-events: none;
+        }
+
+        .demo-frame .play-icon {
+            width: 72px;
+            height: 72px;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+            transition: all 0.3s;
+        }
+
+        .demo-frame:hover .play-icon {
+            background: var(--orange);
+            border-color: var(--orange);
+            transform: scale(1.08);
+        }
+
+        .demo-frame .play-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: white;
+            margin-left: 3px;
+        }
+
+        .demo-label {
+            position: absolute;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 13px;
+            color: var(--text-muted);
+            z-index: 2;
+            letter-spacing: 0.02em;
+        }
+
+        /* ===== SECTION BASE ===== */
+        .section {
+            padding: 140px 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-full {
+            padding: 140px 24px;
+            max-width: 100%;
+        }
+
+        .section-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .tag {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--orange);
+            margin-bottom: 20px;
+        }
+
+        .big-title {
+            font-size: clamp(36px, 5.5vw, 68px);
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            line-height: 1.05;
+            margin-bottom: 20px;
+        }
+
+        .big-title .dim { color: var(--text-muted); }
+        .big-title .accent { color: var(--orange); }
+
+        .subtitle {
+            font-size: 17px;
+            color: var(--text-dim);
+            max-width: 560px;
+            line-height: 1.65;
+        }
+
+        /* ===== SECTION 1: PROBLEM ===== */
+        .problem {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .problem .subtitle { margin-bottom: 64px; }
+
+        .comparison-row {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 0;
+            width: 100%;
+            max-width: 900px;
+            align-items: stretch;
+        }
+
+        .comp-card {
+            padding: 48px 40px;
+            border-radius: 20px;
+            text-align: left;
+        }
+
+        .comp-card.others {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+        }
+
+        .comp-card.spark {
+            background: linear-gradient(135deg, rgba(255,107,53,0.08) 0%, rgba(255,107,53,0.02) 100%);
+            border: 1px solid rgba(255,107,53,0.2);
+        }
+
+        .comp-card h3 {
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 32px;
+        }
+
+        .comp-card.others h3 { color: var(--text-muted); }
+        .comp-card.spark h3 { color: var(--orange); }
+
+        .comp-card ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .comp-card ul li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .comp-card.others ul li {
+            color: var(--text-muted);
+        }
+
+        .comp-card.spark ul li {
+            color: var(--text-dim);
+        }
+
+        .comp-card .icon-mark {
+            flex-shrink: 0;
+            margin-top: 2px;
+            font-size: 14px;
+        }
+
+        .comp-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 24px;
+        }
+
+        .comp-divider span {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-faint);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            writing-mode: vertical-lr;
+        }
+
+        /* ===== SECTION 2: SCREENSHOTS GRID ===== */
+        .screenshots {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .screenshots .subtitle { margin-bottom: 64px; }
+
+        .app-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        .app-grid .app-item {
+            aspect-ratio: 9/16;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+            transition: border-color 0.3s;
+        }
+
+        .app-grid .app-item:hover { border-color: var(--border-hover); }
+
+        .app-item-label {
+            font-size: 12px;
+            color: var(--text-muted);
+            font-weight: 500;
+            text-align: center;
+            z-index: 1;
+        }
+
+        .app-grid-sub {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 12px;
+            width: 100%;
+            max-width: 1000px;
+            margin-top: 12px;
+        }
+
+        .app-grid-sub .app-thumb {
+            aspect-ratio: 1;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+        }
+
+        /* ===== SECTION 3: APPLE TECH ===== */
+        .apple-tech {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .apple-tech .subtitle { margin-bottom: 64px; }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            width: 100%;
+        }
+
+        .tech-cell {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px 20px;
+            text-align: center;
+            transition: border-color 0.3s;
+        }
+
+        .tech-cell:hover { border-color: var(--border-hover); }
+
+        .tech-cell .tech-icon {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        .tech-cell h4 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .tech-cell p {
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        .tech-extra {
+            margin-top: 32px;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .tech-extra-pill {
+            padding: 8px 16px;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-dim);
+        }
+
+        .tech-extra-pill.highlight {
+            border-color: rgba(255,107,53,0.3);
+            color: var(--orange);
+            background: rgba(255,107,53,0.05);
+        }
+
+        /* ===== SECTION 4: 4 PILLARS ===== */
+        .pillars {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .pillars .subtitle { margin-bottom: 72px; }
+
+        .pillar-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1px;
+            width: 100%;
+            background: var(--border);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .pillar {
+            background: var(--bg-card);
+            padding: 48px 28px;
+            text-align: left;
+            position: relative;
+        }
+
+        .pillar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+        }
+
+        .pillar:nth-child(1)::before { background: var(--orange); }
+        .pillar:nth-child(2)::before { background: var(--blue); }
+        .pillar:nth-child(3)::before { background: var(--green); }
+        .pillar:nth-child(4)::before { background: var(--purple); }
+
+        .pillar-num {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            margin-bottom: 20px;
+        }
+
+        .pillar:nth-child(1) .pillar-num { color: var(--orange); }
+        .pillar:nth-child(2) .pillar-num { color: var(--blue); }
+        .pillar:nth-child(3) .pillar-num { color: var(--green); }
+        .pillar:nth-child(4) .pillar-num { color: var(--purple); }
+
+        .pillar h3 {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            margin-bottom: 6px;
+        }
+
+        .pillar .pillar-tagline {
+            font-size: 13px;
+            color: var(--text-dim);
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .pillar .pillar-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .pillar .pillar-list li {
+            font-size: 13px;
+            color: var(--text-dim);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .pillar .pillar-list li .ck {
+            color: var(--green);
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        /* ===== SECTION 5: ONE CLICK PUBLISH ===== */
+        .publish {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .publish-steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin-top: 64px;
+            width: 100%;
+            max-width: 900px;
+        }
+
+        .publish-step {
+            text-align: center;
+        }
+
+        .publish-step .step-num {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 800;
+        }
+
+        .publish-step:nth-child(1) .step-num { background: rgba(255,107,53,0.1); color: var(--orange); }
+        .publish-step:nth-child(2) .step-num { background: rgba(59,130,246,0.1); color: var(--blue); }
+        .publish-step:nth-child(3) .step-num { background: rgba(34,197,94,0.1); color: var(--green); }
+
+        .publish-step h4 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .publish-step p {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .publish-step .step-arrow {
+            display: none;
+        }
+
+        /* ===== SECTION 6: MYCAL ===== */
+        .mycal {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .mycal-card {
+            margin-top: 64px;
+            width: 100%;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            display: flex;
+            overflow: hidden;
+        }
+
+        .mycal-phone {
+            flex: 0 0 360px;
+            background: linear-gradient(180deg, #111128 0%, #0a0a1a 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 48px;
+            position: relative;
+        }
+
+        .mycal-phone .phone-outline {
+            width: 220px;
+            height: 440px;
+            border: 2px solid var(--border);
+            border-radius: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            color: var(--text-muted);
+            position: relative;
+        }
+
+        .mycal-phone .phone-outline::before {
+            content: '';
+            position: absolute;
+            top: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 24px;
+            background: var(--bg);
+            border-radius: 12px;
+        }
+
+        .mycal-body {
+            flex: 1;
+            padding: 56px 48px;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .mycal-body .live-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 5px 12px;
+            background: rgba(34, 197, 94, 0.08);
+            border: 1px solid rgba(34, 197, 94, 0.2);
+            border-radius: 100px;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--green);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 20px;
+            width: fit-content;
+        }
+
+        .mycal-body h3 {
+            font-size: 36px;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            margin-bottom: 16px;
+        }
+
+        .mycal-body > p {
+            font-size: 15px;
+            color: var(--text-dim);
+            line-height: 1.65;
+            margin-bottom: 28px;
+            max-width: 440px;
+        }
+
+        .mycal-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .mycal-tag {
+            padding: 6px 14px;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-dim);
+        }
+
+        /* ===== SECTION 7: TRACK RECORD ===== */
+        .track {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .track .subtitle { margin-bottom: 64px; }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1px;
+            width: 100%;
+            background: var(--border);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .stat-block {
+            background: var(--bg-card);
+            padding: 48px 24px;
+            text-align: center;
+        }
+
+        .stat-block .stat-val {
+            font-size: clamp(40px, 5vw, 60px);
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            line-height: 1;
+            background: linear-gradient(135deg, var(--orange) 0%, var(--orange-soft) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-block .stat-label {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 8px;
+            font-weight: 500;
+        }
+
+        .track-text {
+            margin-top: 48px;
+            font-size: 18px;
+            color: var(--text-dim);
+            max-width: 640px;
+            line-height: 1.65;
+        }
+
+        .track-text strong { color: var(--text); }
+
+        /* ===== SECTION 8: FINAL CTA ===== */
+        .cta-section {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 180px 24px;
+            position: relative;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 400px;
+            background: radial-gradient(circle, var(--orange-glow) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .cta-section .big-title { margin-bottom: 16px; }
+
+        .cta-section .subtitle { margin-bottom: 48px; }
+
+        .email-form {
+            display: flex;
+            gap: 10px;
+            max-width: 460px;
+            width: 100%;
+        }
+
+        .email-form input {
+            flex: 1;
+            padding: 14px 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--text);
+            font-size: 14px;
+            font-family: 'Inter', sans-serif;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .email-form input::placeholder { color: var(--text-muted); }
+        .email-form input:focus { border-color: var(--orange); }
+
+        .cta-note {
+            margin-top: 14px;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .cta-note strong { color: var(--orange); }
+
+        /* ===== FOOTER ===== */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 32px 24px;
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-inner span {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-links a {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover { color: var(--text-dim); }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1000px) {
+            .pillar-row { grid-template-columns: repeat(2, 1fr); }
+            .tech-grid { grid-template-columns: repeat(2, 1fr); }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .comparison-row { grid-template-columns: 1fr; }
+            .comp-divider { padding: 16px 0; }
+            .comp-divider span { writing-mode: horizontal-tb; }
+        }
+
+        @media (max-width: 768px) {
+            nav { padding: 0 20px; }
+            .nav-center { display: none; }
+            .pillar-row { grid-template-columns: 1fr; }
+            .publish-steps { grid-template-columns: 1fr; gap: 24px; }
+            .app-grid { grid-template-columns: repeat(2, 1fr); }
+            .app-grid-sub { grid-template-columns: repeat(3, 1fr); }
+            .mycal-card { flex-direction: column; }
+            .mycal-phone { flex: none; padding: 32px; }
+            .mycal-phone .phone-outline { width: 180px; height: 360px; }
+            .mycal-body { padding: 32px; }
+            .email-form { flex-direction: column; }
+            .footer-inner { flex-direction: column; gap: 12px; }
+        }
+
+        /* ===== SCROLL ANIMATIONS ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<nav>
+    <div class="nav-left">
+        <div class="logo-icon">⚡</div>
+        Spark AI
+    </div>
+    <div class="nav-center">
+        <a href="#platform">Platform</a>
+        <a href="#proof">Proof</a>
+        <a href="#about">About</a>
+        <a href="affiliate.html">Affiliates</a>
+    </div>
+    <div class="nav-right">
+        <a href="#join" class="nav-cta">Get Early Access</a>
+    </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+    <div class="hero-pill">
+        <div class="live-dot"></div>
+        Early Access — 500 spots
+    </div>
+    <h1>
+        Spark AI<br><span class="gradient">is here.</span>
+    </h1>
+    <p class="hero-sub">
+        The most advanced AI to build apps. Native Swift on every Apple platform.
+        But we don't stop at code.
+    </p>
+    <div class="hero-buttons">
+        <a href="#join" class="btn-main">Get Early Access →</a>
+        <a href="#demo" class="btn-ghost">Watch Demo</a>
+    </div>
+</section>
+
+<!-- ===== DEMO ===== -->
+<div class="demo-wrap" id="demo">
+    <div class="demo-frame">
+        <div class="play-icon">
+            <svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg>
+        </div>
+        <span class="demo-label">From idea to App Store in 60 minutes</span>
+    </div>
+</div>
+
+<!-- ===== 1. PROBLEM ===== -->
+<section class="section problem reveal">
+    <div class="tag">The Problem</div>
+    <h2 class="big-title">
+        Building an app is easy.<br>
+        <span class="dim">Launching a business isn't.</span>
+    </h2>
+    <p class="subtitle">
+        AI tools build your code. Then leave you alone with App Store submission,
+        monetization, analytics, and everything else that actually matters.
+    </p>
+    <div class="comparison-row">
+        <div class="comp-card others">
+            <h3>Other AI tools</h3>
+            <ul>
+                <li><span class="icon-mark">✕</span> Generate code, nothing else</li>
+                <li><span class="icon-mark">✕</span> No App Store publishing</li>
+                <li><span class="icon-mark">✕</span> No monetization tools</li>
+                <li><span class="icon-mark">✕</span> No analytics or attribution</li>
+                <li><span class="icon-mark">✕</span> No ASO or localization</li>
+                <li><span class="icon-mark">✕</span> No scaling support</li>
+            </ul>
+        </div>
+        <div class="comp-divider"><span>vs</span></div>
+        <div class="comp-card spark">
+            <h3>Spark AI</h3>
+            <ul>
+                <li><span class="icon-mark">✓</span> Native Swift code + full platform</li>
+                <li><span class="icon-mark">✓</span> One-click App Store publishing</li>
+                <li><span class="icon-mark">✓</span> Built-in IAP, subs &amp; paywalls</li>
+                <li><span class="icon-mark">✓</span> Analytics &amp; attribution SDK</li>
+                <li><span class="icon-mark">✓</span> Auto ASO, screenshots &amp; localization</li>
+                <li><span class="icon-mark">✓</span> Expert publishing partnership</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- ===== 2. SCREENSHOTS ===== -->
+<section class="section screenshots reveal">
+    <div class="tag">Production Quality</div>
+    <h2 class="big-title">
+        Perfect in every detail.<br>
+        <span class="dim">Ready to sell from day one.</span>
+    </h2>
+    <p class="subtitle">
+        Native Swift. Apple HIG. Production-grade code. With built-in monetization,
+        analytics, and paywalls — your app isn't just beautiful. It's profitable.
+    </p>
+    <div class="app-grid">
+        <div class="app-item"><span class="app-item-label">Music App</span></div>
+        <div class="app-item"><span class="app-item-label">Fitness Tracker</span></div>
+        <div class="app-item"><span class="app-item-label">Finance Manager</span></div>
+    </div>
+    <div class="app-grid-sub">
+        <div class="app-thumb"></div>
+        <div class="app-thumb"></div>
+        <div class="app-thumb"></div>
+        <div class="app-thumb"></div>
+        <div class="app-thumb"></div>
+        <div class="app-thumb"></div>
+    </div>
+</section>
+
+<!-- ===== 3. APPLE TECH ===== -->
+<section class="section apple-tech reveal">
+    <div class="tag">Native Capabilities</div>
+    <h2 class="big-title">
+        Everything your iPhone can do.<br>
+        <span class="dim">Everything the App Store demands.</span>
+    </h2>
+    <p class="subtitle">
+        Real Apple frameworks. Real native performance. Plus all the invisible work
+        that gets your app featured, downloaded, and monetized.
+    </p>
+    <div class="tech-grid">
+        <div class="tech-cell">
+            <div class="tech-icon">❤️</div>
+            <h4>HealthKit</h4>
+            <p>Health &amp; fitness data</p>
+        </div>
+        <div class="tech-cell">
+            <div class="tech-icon">🔲</div>
+            <h4>Widgets</h4>
+            <p>Home screen presence</p>
+        </div>
+        <div class="tech-cell">
+            <div class="tech-icon">🗣️</div>
+            <h4>Siri</h4>
+            <p>Voice integration</p>
+        </div>
+        <div class="tech-cell">
+            <div class="tech-icon">🔴</div>
+            <h4>Live Activities</h4>
+            <p>Dynamic Island</p>
+        </div>
+        <div class="tech-cell">
+            <div class="tech-icon">🌐</div>
+            <h4>AR / 3D</h4>
+            <p>Immersive experiences</p>
+        </div>
+        <div class="tech-cell">
+            <div class="tech-icon">☁️</div>
+            <h4>CloudKit</h4>
+            <p>Sync &amp; storage</p>
+        </div>
+        <div class="tech-cell">
+            <div class="tech-icon">⌚</div>
+            <h4>watchOS</h4>
+            <p>Apple Watch apps</p>
+        </div>
+        <div class="tech-cell">
+            <div class="tech-icon">🥽</div>
+            <h4>visionOS</h4>
+            <p>Vision Pro ready</p>
+        </div>
+    </div>
+    <div class="tech-extra">
+        <span class="tech-extra-pill">SwiftUI</span>
+        <span class="tech-extra-pill">StoreKit 2</span>
+        <span class="tech-extra-pill">App Intents</span>
+        <span class="tech-extra-pill">Push Notifications</span>
+        <span class="tech-extra-pill highlight">Auto ASO</span>
+        <span class="tech-extra-pill highlight">Screenshot Gen</span>
+        <span class="tech-extra-pill highlight">AI Localization</span>
+        <span class="tech-extra-pill highlight">Paywall SDK</span>
+    </div>
+</section>
+
+<!-- ===== 4. 4 PILLARS ===== -->
+<section class="section pillars reveal" id="platform">
+    <div class="tag">Full-Stack Platform</div>
+    <h2 class="big-title">
+        Don't just build apps.<br>
+        <span class="accent">Launch businesses.</span>
+    </h2>
+    <p class="subtitle">
+        Four pillars. One platform. From native code to App Store revenue.
+    </p>
+    <div class="pillar-row">
+        <div class="pillar">
+            <div class="pillar-num">01 — Build</div>
+            <h3>Build</h3>
+            <div class="pillar-tagline">AI-powered native code</div>
+            <ul class="pillar-list">
+                <li><span class="ck">✓</span> Native Swift / SwiftUI</li>
+                <li><span class="ck">✓</span> Apple HIG compliant</li>
+                <li><span class="ck">✓</span> AI enriched with 14 years of data</li>
+                <li><span class="ck">✓</span> Every Apple platform</li>
+            </ul>
+        </div>
+        <div class="pillar">
+            <div class="pillar-num">02 — Publish</div>
+            <h3>Publish</h3>
+            <div class="pillar-tagline">From code to Store, automated</div>
+            <ul class="pillar-list">
+                <li><span class="ck">✓</span> Auto ASO optimization</li>
+                <li><span class="ck">✓</span> Screenshot generation</li>
+                <li><span class="ck">✓</span> AI localization (40+ languages)</li>
+                <li><span class="ck">✓</span> One-click submission</li>
+            </ul>
+        </div>
+        <div class="pillar">
+            <div class="pillar-num">03 — Grow</div>
+            <h3>Grow</h3>
+            <div class="pillar-tagline">Monetize from day 1</div>
+            <ul class="pillar-list">
+                <li><span class="ck">✓</span> IAP &amp; Subscriptions</li>
+                <li><span class="ck">✓</span> Best-in-class paywalls</li>
+                <li><span class="ck">✓</span> Attribution SDK</li>
+                <li><span class="ck">✓</span> Real-time analytics</li>
+            </ul>
+        </div>
+        <div class="pillar">
+            <div class="pillar-num">04 — Scale</div>
+            <h3>Scale</h3>
+            <div class="pillar-tagline">Skyrocket with experts</div>
+            <ul class="pillar-list">
+                <li><span class="ck">✓</span> MWM publishing partnership</li>
+                <li><span class="ck">✓</span> Creative production</li>
+                <li><span class="ck">✓</span> UA funding</li>
+                <li><span class="ck">✓</span> 1B+ downloads expertise</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- ===== 5. ONE-CLICK PUBLISH ===== -->
+<section class="section publish reveal">
+    <div class="tag">App Store Publishing</div>
+    <h2 class="big-title">
+        One click to App Store.<br>
+        <span class="dim">First revenue by Friday.</span>
+    </h2>
+    <p class="subtitle">
+        Other tools make you deal with Xcode, certificates, provisioning profiles, metadata.
+        Spark AI handles everything. You click publish. Money starts coming in.
+    </p>
+    <div class="publish-steps">
+        <div class="publish-step">
+            <div class="step-num">1</div>
+            <h4>Build with AI</h4>
+            <p>Describe your app. Spark AI generates production-ready native Swift code.</p>
+        </div>
+        <div class="publish-step">
+            <div class="step-num">2</div>
+            <h4>Click Publish</h4>
+            <p>Auto ASO, screenshots, metadata, localization. One click to App Store Connect.</p>
+        </div>
+        <div class="publish-step">
+            <div class="step-num">3</div>
+            <h4>Start Earning</h4>
+            <p>Built-in monetization: IAP, subscriptions, paywalls, analytics. Revenue from day one.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ===== 6. MYCAL ===== -->
+<section class="section mycal reveal" id="proof">
+    <div class="tag">Proof</div>
+    <h2 class="big-title">
+        Built with Spark AI.<br>
+        Live on the App Store.<br>
+        <span class="dim">Making money.</span>
+    </h2>
+    <p class="subtitle">
+        MyCal was built 100% with Spark AI. Not a prototype. A real business.
+    </p>
+    <div class="mycal-card">
+        <div class="mycal-phone">
+            <div class="phone-outline">
+                MyCal
+            </div>
+        </div>
+        <div class="mycal-body">
+            <div class="live-badge">● Live &amp; Scaling on App Store</div>
+            <h3>MyCal</h3>
+            <p>
+                A full-featured calendar app built entirely with Spark AI.
+                Every Apple technology integrated. Real users. Real revenue.
+                The ultimate proof that Spark AI produces apps
+                that don't just work — they sell.
+            </p>
+            <div class="mycal-tags">
+                <span class="mycal-tag">HealthKit</span>
+                <span class="mycal-tag">Widgets</span>
+                <span class="mycal-tag">Siri</span>
+                <span class="mycal-tag">Live Activities</span>
+                <span class="mycal-tag">SwiftUI</span>
+                <span class="mycal-tag">CloudKit</span>
+                <span class="mycal-tag">App Intents</span>
+                <span class="mycal-tag">StoreKit 2</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== 7. TRACK RECORD ===== -->
+<section class="section track reveal" id="about">
+    <div class="tag">Built by MWM</div>
+    <h2 class="big-title">
+        AI powered by 14 years<br>
+        <span class="dim">and 1 billion downloads.</span>
+    </h2>
+    <p class="subtitle">
+        Not a startup guessing. A team of 80 that's been building
+        award-winning mobile apps since 2012.
+    </p>
+    <div class="stats-grid">
+        <div class="stat-block">
+            <div class="stat-val">14</div>
+            <div class="stat-label">Years of expertise</div>
+        </div>
+        <div class="stat-block">
+            <div class="stat-val">70+</div>
+            <div class="stat-label">Apps published</div>
+        </div>
+        <div class="stat-block">
+            <div class="stat-val">1B+</div>
+            <div class="stat-label">Downloads</div>
+        </div>
+        <div class="stat-block">
+            <div class="stat-val">80</div>
+            <div class="stat-label">Team members</div>
+        </div>
+    </div>
+    <p class="track-text">
+        Every app built with Spark AI benefits from <strong>real production intelligence</strong> —
+        monetization patterns, category trends, iOS best practices, and everything we've learned
+        building apps that people actually use and pay for.
+    </p>
+</section>
+
+<!-- ===== 8. FINAL CTA ===== -->
+<section class="section cta-section" id="join">
+    <div class="tag">Early Access</div>
+    <h2 class="big-title">
+        What will you<br><span class="accent">launch?</span>
+    </h2>
+    <p class="subtitle">
+        Join the first 500 builders. Full platform access,
+        priority support, lifetime early pricing.
+    </p>
+    <div class="email-form">
+        <input type="email" placeholder="Your email">
+        <button class="btn-main">Get Access →</button>
+    </div>
+    <p class="cta-note"><strong>463</strong> spots remaining</p>
+</section>
+
+<!-- ===== AFFILIATE BANNER ===== -->
+<section class="section reveal" style="padding-top:80px; padding-bottom:80px;">
+    <div style="background: linear-gradient(135deg, rgba(255,107,53,0.06) 0%, rgba(168,85,247,0.06) 100%); border: 1px solid rgba(255,107,53,0.15); border-radius: 20px; padding: 56px 48px; display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap;">
+        <div style="flex:1; min-width:280px;">
+            <div style="font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:0.1em; color:var(--orange); margin-bottom:12px;">Affiliate Program</div>
+            <h3 style="font-size:28px; font-weight:800; letter-spacing:-0.03em; margin-bottom:12px;">Earn 30% recurring commission.</h3>
+            <p style="font-size:15px; color:var(--text-dim); line-height:1.6; max-width:480px;">
+                Join the Spark AI Founding Affiliate Program. 30% recurring on every subscription, forever.
+                No cap, no tiers. Top creators are making $5,000+/month with AI tool affiliates.
+            </p>
+        </div>
+        <a href="affiliate.html" class="btn-main" style="white-space:nowrap;">Become an Affiliate →</a>
+    </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+    <div class="footer-inner">
+        <span>© 2026 Spark AI by MWM</span>
+        <div class="footer-links">
+            <a href="#">Privacy</a>
+            <a href="#">Terms</a>
+            <a href="#">Contact</a>
+        </div>
+    </div>
+</footer>
+
+<!-- ===== SCROLL REVEAL ===== -->
+<script>
+const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add('visible');
+    });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
